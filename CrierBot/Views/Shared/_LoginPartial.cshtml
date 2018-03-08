@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@using NetMud.Authentication
+
+@{
+    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var authUser = userManager.FindById(User.Identity.GetUserId());
+}
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Test Client", "Index", "GameClient", routeValues: null, htmlAttributes: new { title = "The Game Client", Style = "color: orange" })</li>
+            <li>
+                @if (authUser.GameAccount.Characters.Count() > 0)
+                {
+                    @Html.DropDownList("CurrentlySelectedCharacter", authUser.GameAccount.Characters.Select(ch =>
+                    new SelectListItem() { Text = ch.FullName()
+                                        , Value = ch.ID.ToString()
+                                        , Selected = authUser.GameAccount.CurrentlySelectedCharacter != default(long) && authUser.GameAccount.CurrentlySelectedCharacter.Equals(ch.ID) })
+                                        , htmlAttributes: new { id = "currentCharacter", Style = "margin: 15px;" })
+                }
+                else
+                {
+                    @Html.ActionLink("Create a Character", "ManageCharacters", "Manage", routeValues: null, htmlAttributes: new { id = "ManageCharacters" })
+                }
+            </li>
+            <li>
+                <div style="padding-top: 15px; padding-bottom: 15px;">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Hello @authUser.GameAccount.GlobalIdentityHandle<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                        <li class="dropdown-header" style="color: mediumvioletred">Characters</li>
+                        <li>@Html.ActionLink("Dashboard", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+                        <li>@Html.ActionLink("Manage Characters", "ManageCharacters", "Manage", routeValues: null, htmlAttributes: new { title = "Manage Characters" })</li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="divider"></li>
+                            <li class="dropdown-header" style="color: mediumvioletred">Administrative</li>
+                            <li>@Html.ActionLink("Dashboard", "Index", "GameAdmin", routeValues: null, htmlAttributes: new { title = "Dashboard" })</li>
+                            <li>@Html.ActionLink("Logs", "Index", "Logging", routeValues: null, htmlAttributes: new { title = "Logs" })</li>
+                            <li>@Html.ActionLink("Manage NPCs", "Index", "NPC", routeValues: null, htmlAttributes: new { title = "Manage NPCs" })</li>
+                            <li>@Html.ActionLink("Manage Zones", "Index", "Zone", routeValues: null, htmlAttributes: new { title = "Manage Zones" })</li>
+                            <li>@Html.ActionLink("Manage Inanimates", "Index", "Inanimate", routeValues: null, htmlAttributes: new { title = "Manage Inanimates" })</li>
+                            <li>@Html.ActionLink("Manage Players", "Index", "Player", routeValues: null, htmlAttributes: new { title = "Manage Players" })</li>
+                        }
+                        <li class="divider"></li>
+                        <li ><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script type="text/javascript">
+
+    </script>
+}

@@ -1,0 +1,29 @@
+﻿@model NetMud.Models.ManageAccountViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<div>
+    <h4>Manage your account and characters</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Password:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+        <dt>Registered Characters:</dt>
+        <dd>
+            @Model.authedUser.GameAccount.Characters.Count() [
+            @Html.ActionLink("Manage", "ManageCharacters") ]
+        </dd>
+    </dl>
+</div>

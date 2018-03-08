@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - TwinMUD</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/HtmlUtilities.js")
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Under the Eclipse", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <h2>@ViewBag.Title</h2>
+
+        <h3><p id="statusMessage" name="statusMessage" class="text-success">@ViewBag.StatusMessage</p></h3>
+        @RenderBody()
+        <footer>
+            <br class="clearfix" />
+            <hr />
+            <p>TwinMUD &copy; @DateTime.Now.Year - Daniel Nissenfeld</p>
+        </footer>
+    </div>
+    <script type="text/javascript">
+        if('@ViewBag.StatusMessage' == '' && GetQueryStringParams('Message') != '') {
+            $('#statusMessage').html(GetQueryStringParams('Message'));
+        }
+    </script>
+</body>
+</html>
