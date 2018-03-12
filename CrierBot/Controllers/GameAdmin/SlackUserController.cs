@@ -45,7 +45,7 @@ namespace NetMud.Controllers.GameAdmin
             vModel.ItemsPerPage = ItemsPerPage;
             vModel.SearchTerms = SearchTerms;
 
-            return View("~/Views/GameAdmin/Zone/Index.cshtml", vModel);
+            return View("Index", vModel);
         }
 
 
@@ -67,7 +67,7 @@ namespace NetMud.Controllers.GameAdmin
                     message = "That does not exist";
                 else if (obj.Remove())
                 {
-                    LoggingUtility.LogAdminCommandUsage("*WEB* - RemoveZone[" + ID.ToString() + "]", authedUser.GameAccount.GlobalIdentityHandle);
+                    LoggingUtility.LogAdminCommandUsage("*WEB* - RemoveSlackUser[" + ID.ToString() + "]", authedUser.GameAccount.GlobalIdentityHandle);
                     message = "Delete Successful.";
                 }
                 else
@@ -83,7 +83,7 @@ namespace NetMud.Controllers.GameAdmin
             var vModel = new AddEditSlackUserViewModel();
             vModel.authedUser = UserManager.FindById(User.Identity.GetUserId());
 
-            return View("~/Views/GameAdmin/Zone/Add.cshtml", vModel);
+            return View("Add", vModel);
         }
 
         [HttpPost]
@@ -134,7 +134,7 @@ namespace NetMud.Controllers.GameAdmin
             vModel.DataObject = obj;
             vModel.Name = obj.Name;
 
-            return View("~/Views/GameAdmin/Zone/Edit.cshtml", vModel);
+            return View("Edit", vModel);
         }
 
         [HttpPost]
@@ -153,9 +153,18 @@ namespace NetMud.Controllers.GameAdmin
 
             obj.Name = vModel.Name;
 
+            var links = new HashSet<string>();
+            foreach (var link in vModel.Links)
+            {
+                if (!string.IsNullOrWhiteSpace(link) && !links.Contains(link))
+                    links.Add(link);
+            }
+
+            obj.Links = links;
+
             if (obj.Save())
             {
-                LoggingUtility.LogAdminCommandUsage("*WEB* - EditZone[" + obj.ID.ToString() + "]", authedUser.GameAccount.GlobalIdentityHandle);
+                LoggingUtility.LogAdminCommandUsage("*WEB* - EditSlackUser[" + obj.ID.ToString() + "]", authedUser.GameAccount.GlobalIdentityHandle);
                 message = "Edit Successful.";
             }
             else

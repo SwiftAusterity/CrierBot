@@ -77,6 +77,9 @@ namespace NetMud.Data.System
                 //reset this guy's ID to the next one in the list
                 GetNextId();
 
+                Created = DateTime.Now;
+                LastRevised = DateTime.Now;
+
                 BackingDataCache.Add(this);
                 accessor.WriteEntity(this);
             }
@@ -124,6 +127,7 @@ namespace NetMud.Data.System
 
             try
             {
+                LastRevised = DateTime.Now;
                 accessor.WriteEntity(this);
             }
             catch (Exception ex)

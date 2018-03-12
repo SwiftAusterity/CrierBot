@@ -277,15 +277,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Manage\ManageCharacters.cshtml" />
     <Content Include="Views\GameAdmin\Index.cshtml" />
     <Content Include="Views\Logging\Index.cshtml" />
-    <Content Include="Views\GameAdmin\Help\Index.cshtml" />
-    <Content Include="Views\GameAdmin\Help\Edit.cshtml" />
-    <Content Include="Views\GameAdmin\Help\Add.cshtml" />
-    <Content Include="Views\GameAdmin\Zone\Add.cshtml" />
-    <Content Include="Views\GameAdmin\Zone\Edit.cshtml" />
-    <Content Include="Views\GameAdmin\Zone\Index.cshtml" />
+    <Content Include="Views\SlackUser\Add.cshtml" />
+    <Content Include="Views\SlackUser\Edit.cshtml" />
+    <Content Include="Views\SlackUser\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Text.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
@@ -296,9 +292,9 @@
     <Content Include="Views\Shared\SubmitButton.cshtml" />
     <Content Include="Views\Shared\SearchCriteriaAndPaging.cshtml" />
     <Content Include="Views\Shared\BackingDataDropdown.cshtml" />
-    <Content Include="Views\Shared\MobileEntityContainer.cshtml" />
     <Content Include="Views\Shared\AddContentLink.cshtml" />
     <Content Include="Views\Shared\_chromelessLayout.cshtml" />
+    <Content Include="Views\SlackUser\Links.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

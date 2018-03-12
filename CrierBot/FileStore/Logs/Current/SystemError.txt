@@ -1,0 +1,18 @@
+[2018/03/12 11:49:08]:  AccessViolationException: Current directory for type Game does not exist.
+
+[2018/03/12 11:49:08]:  AccessViolationException: Current directory for type SlackUser does not exist.
+
+[2018/03/12 11:55:17]:  AccessViolationException: Current directory for type Game does not exist.
+
+[2018/03/12 11:55:17]:  AccessViolationException: Current directory for type SlackUser does not exist.
+
+[2018/03/12 11:58:02]:  AccessViolationException: Current directory for type Game does not exist.
+
+[2018/03/12 11:58:02]:  AccessViolationException: Current directory for type SlackUser does not exist.
+
+[2018/03/12 12:00:08]:  AccessViolationException: Current directory for type Game does not exist.
+
+[2018/03/12 12:00:08]:  AccessViolationException: Current directory for type SlackUser does not exist.
+
+[2018/03/12 12:22:40]:  AccessViolationException: Current directory for type Game does not exist.
+

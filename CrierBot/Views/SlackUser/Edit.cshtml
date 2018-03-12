@@ -1,29 +1,33 @@
-﻿@model NetMud.Models.Admin.AddEditHelpDataViewModel
+﻿@model NetMud.Models.Admin.AddEditSlackUserViewModel
 @{
-    ViewBag.Title = "Edit Help File";
+    ViewBag.Title = "Edit Slack User";
+}
 
-    <section id="newCharacterForm">
-        @using (Html.BeginForm("Edit", "Help", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@{
+    <section id="newZoneForm">
+        @using (Html.BeginForm("Edit", "SlackUser", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <input type="hidden" name="id" id="id" value="@Model.DataObject.ID" />
-            <div class="form-group one-column">
+            <div class="form-group two-column">
                 @Html.EditorFor(e => e.Name)
             </div>
-            <div class="form-group one-column">
-                @Html.EditorFor(e => e.HelpText)
-            </div>
+
+            @Html.Partial("~/Views/SlackUser/Links.cshtml", Model)
+
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-9">
                     <input type="submit" value="Commit" class="btn btn-default save" />
-                    @Html.ActionLink("Cancel", "Index", "Help", new { @class = "btn btn-default cancel" })
+                    @Html.ActionLink("Cancel", "Index", "SlackUser", null, new { @class = "btn btn-default cancel" })
                 </div>
             </div>
         }
     </section>
 }
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

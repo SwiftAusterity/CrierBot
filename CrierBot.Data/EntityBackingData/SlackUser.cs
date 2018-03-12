@@ -11,8 +11,6 @@ namespace NetMud.Data.EntityBackingData
     [Serializable]
     public class SlackUser : BackingDataPartial, ISlackUser
     {
-        public string LongDescription { get; set; }
-
         public HashSet<string> Links { get; set; }
 
         /// <summary>
@@ -30,9 +28,6 @@ namespace NetMud.Data.EntityBackingData
         public override IList<string> FitnessReport()
         {
             var dataProblems = base.FitnessReport();
-
-            if(String.IsNullOrWhiteSpace(LongDescription))
-                dataProblems.Add("Long Description is empty.");
 
             return dataProblems;
         }

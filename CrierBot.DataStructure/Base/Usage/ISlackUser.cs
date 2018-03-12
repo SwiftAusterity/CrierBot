@@ -8,7 +8,6 @@ namespace NetMud.DataStructure.Base.Usage
     /// </summary>
     public interface ISlackUser : IStoredData
     {
-        string LongDescription { get; set; }
         HashSet<string> Links { get; set; }
     }
 }

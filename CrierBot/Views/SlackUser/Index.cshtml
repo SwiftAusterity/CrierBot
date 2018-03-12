@@ -1,14 +1,18 @@
-﻿@model NetMud.Models.Admin.ManageHelpDataViewModel
+﻿@model NetMud.Models.Admin.ManageSlackUserViewModel
 @{
-    ViewBag.Title = "Manage Help Files";
+    ViewBag.Title = "Manage Slack Users";
+    var prevPageState = Model.CurrentPageNumber > 1 ? String.Empty : "disabled";
+    var nextPageState = Model.CurrentPageNumber < Model.NumberOfPages ? String.Empty : "disabled";
+}
 
-    @Html.Partial("AddContentLink")
+@{
+    @Html.Partial("AddContentLink");
 
     if (Model.Items.Count() > 0)
     {
-        @Html.Partial("SearchCriteriaAndPaging", new Tuple<NetMud.Models.IPagedDataModel, string>(Model, "Help"))
+        @Html.Partial("SearchCriteriaAndPaging", new Tuple<NetMud.Models.IPagedDataModel, string>(Model, "SlackUser"))
 
-        using (Html.BeginForm("Remove", "Help"))
+        using (Html.BeginForm("Remove", "SlackUser"))
         {
             @Html.AntiForgeryToken()
             <table class="table">

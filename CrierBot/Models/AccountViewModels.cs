@@ -6,8 +6,8 @@ namespace NetMud.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Email")]
         [DataType(DataType.Text)]
+        [Display(Name = "Email")]
         public string Email { get; set; }
     }
 
@@ -27,12 +27,11 @@ namespace NetMud.Models
     public class VerifyCodeViewModel
     {
         [Required]
-        [DataType(DataType.Text)]
         public string Provider { get; set; }
 
         [Required]
-        [Display(Name = "Code")]
         [DataType(DataType.Text)]
+        [Display(Name = "Code")]
         public string Code { get; set; }
 
         public string ReturnUrl { get; set; }
@@ -46,17 +45,17 @@ namespace NetMud.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Email")]
         [DataType(DataType.Text)]
+        [Display(Name = "Email")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
         [EmailAddress]
         [DataType(DataType.Text)]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
@@ -91,7 +90,6 @@ namespace NetMud.Models
         [Required]
         [Display(Name = "Global User Handle")]
         [StringLength(200, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
-        [DataType(DataType.Text)]
         public string GlobalUserHandle { get; set; }
     }
 
