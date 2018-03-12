@@ -5,7 +5,7 @@ using System.Web.Http;
 
 namespace NetMud.Controllers
 {
-    public class AdminDataApiController : ApiController
+    public class SlackApiController : ApiController
     {
     }
 }
